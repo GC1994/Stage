@@ -18,8 +18,8 @@ public class InterventiDAOImpl implements InterventiDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 			Query<Intervento> theQuery = 
 					currentSession.createQuery("from Intervento order by idIntervento", Intervento.class);
-					List<Intervento> intervento = theQuery.getResultList();	
-				return intervento;
+					List<Intervento> interventi = theQuery.getResultList();	
+				return interventi;
 	}
 	
 	@Override

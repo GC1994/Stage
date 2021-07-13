@@ -2,15 +2,12 @@ package com.ecobonus.dao;
 
 import java.util.List;
 
-import com.ecobonus.entity.InizioLavoro;
-import com.ecobonus.entity.Intervento;
-
+import com.ecobonus.entity.InizioLavori;
 
 
 public interface InizioLavoriDAO {
-	public List<InizioLavoro> getList();
-	public void saveInizioLavoro(InizioLavoro inizioLavoro);
-	public InizioLavoro getInizioLavoro(int theIdInizioLavori);
-	public void deleteInizioLavoro(int theIdInizioLavori);
-	InizioLavoro getInizioLavoro(Intervento intervento);
+	public List<InizioLavori> getList();
+	public void saveInizioLavori(InizioLavori inizioLavori);
+	public InizioLavori getInizioLavori(int inizioLavori);
+	public void deleteInizioLavori(int inizioLavori);
 }

@@ -18,6 +18,16 @@ public class Intervento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idIntervento")
     private int idIntervento;
+	
+	@OneToOne(mappedBy="interventi", cascade = CascadeType.ALL)
+    private InizioLavori idInizioLavori;
+	
+
+    @Column(name = "CodSede")
+    private String codSede;
+
+    @Column(name = "CodiceTipoIntervento")
+    private String codiceTipoIntervento;
     
     @Column(name = "Descrizione")
     private String descrizione;
@@ -30,32 +40,21 @@ public class Intervento {
     
     @Column(name = "Cliente")
     private String cliente;
-    
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="idInizioLavori")
-    private InizioLavoro inizioLavoro;
-    
+
 	@ManyToOne
     @JoinColumn(name="IdRegione")
     private Regione regione;
 	
-	@ManyToOne
-    @JoinColumn(name="CodTipoIntervento")
-    private TipoIntervento tipoIntervento;
-	
-	@ManyToOne
-    @JoinColumn(name="CodiceSede")
-    private Sede sede;
-	
 	@Override
 	public String toString() {
-		return "Intervento [idIntervento=" + idIntervento + ", descrizione=" + descrizione + ", referente=" + referente
-				+ ", contatto=" + contatto + ", cliente=" + cliente + ", regione=" + regione + ", tipoIntervento="
-				+ tipoIntervento + ", sede=" + sede + "]";
+		return "Interventi [idIntervento=" + idIntervento + ", codSede=" + codSede + ", codiceTipoIntervento="
+				+ codiceTipoIntervento + ", descrizione=" + descrizione + ", referente=" + referente + ", contatto="
+				+ contatto + ", cliente=" + cliente + ", idRegione=" + regione + "]";
 	}
 
 	public Intervento() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getIdIntervento() {
@@ -66,20 +65,20 @@ public class Intervento {
 		this.idIntervento = idIntervento;
 	}
 
-	public TipoIntervento getTipoIntervento() {
-		return tipoIntervento;
+	public String getCodSede() {
+		return codSede;
 	}
 
-	public void setTipoIntervento(TipoIntervento tipoIntervento) {
-		this.tipoIntervento = tipoIntervento;
+	public void setCodSede(String codSede) {
+		this.codSede = codSede;
 	}
 
-	public Sede getSede() {
-		return sede;
+	public String getCodiceTipoIntervento() {
+		return codiceTipoIntervento;
 	}
 
-	public void setSede(Sede sede) {
-		this.sede = sede;
+	public void setCodiceTipoIntervento(String codiceTipoIntervento) {
+		this.codiceTipoIntervento = codiceTipoIntervento;
 	}
 
 	public String getDescrizione() {
@@ -122,13 +121,13 @@ public class Intervento {
 		this.regione = regione;
 	}
 
-	public InizioLavoro getInizioLavoro() {
-		return inizioLavoro;
+	public InizioLavori getIdInizioLavori() {
+		return idInizioLavori;
 	}
 
-	public void setInizioLavoro(InizioLavoro inizioLavoro) {
-		this.inizioLavoro = inizioLavoro;
+	public void setIdInizioLavori(InizioLavori idInizioLavori) {
+		this.idInizioLavori = idInizioLavori;
 	}
 
-
+	
 }

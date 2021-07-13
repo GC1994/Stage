@@ -8,53 +8,41 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ecobonus.entity.InizioLavoro;
-import com.ecobonus.entity.Intervento;
+import com.ecobonus.entity.InizioLavori;
+
 
 @Repository
 public class InizioLavoriDAOImpl implements InizioLavoriDAO {
 	@Autowired 
 	private SessionFactory sessionFactory;
-	public List<InizioLavoro> getList() {
+	public List<InizioLavori> getList() {
 		Session currentSession = sessionFactory.getCurrentSession();
-			Query<InizioLavoro> theQuery = 
-					currentSession.createQuery("from InizioLavoro order by idInizioLavori", InizioLavoro.class);
-					List<InizioLavoro> inizioLavoro = theQuery.getResultList();	
-				return inizioLavoro;
+			Query<InizioLavori> theQuery = 
+					currentSession.createQuery("from InizioLavori order by idiInizioLavori", InizioLavori.class);
+					List<InizioLavori> inizioLavori = theQuery.getResultList();	
+				return inizioLavori;
 	}
 	
 	@Override
-	public void saveInizioLavoro(InizioLavoro theInizioLavoro) {
+	public void saveInizioLavori(InizioLavori inizioLavori) {
 			Session currentSession = sessionFactory.getCurrentSession();
-				currentSession.saveOrUpdate(theInizioLavoro);
+				currentSession.saveOrUpdate(inizioLavori);
 	}
 	
 	@Override
-	public InizioLavoro getInizioLavoro(Intervento intervento) {
+	public InizioLavori getInizioLavori(int idInizioLavori) {
 			Session currentSession = sessionFactory.getCurrentSession();
-			Query<InizioLavoro> theQuery = 
-					currentSession.createQuery("from InizioLavoro where idIntervento=:idIntervento", InizioLavoro.class);
-			InizioLavoro inizioLavoro = theQuery.getSingleResult();
-			if(inizioLavoro==null) {
-				inizioLavoro = new InizioLavoro();
-				inizioLavoro.setIdIntervento(intervento);
-			}
-					return inizioLavoro;
+				InizioLavori inizioLavori = currentSession.get(InizioLavori.class, idInizioLavori);
+					return inizioLavori;
 	}
 	@Override
-	public void deleteInizioLavoro(int theIdInizioLavori) {
+	public void deleteInizioLavori(int inizioLavori) {
 	
 		Session currentSession = sessionFactory.getCurrentSession();
 			Query theQuery = 
-					currentSession.createQuery("delete from InizioLavoro where idInizioLavori=:idInizioLavori");
-					theQuery.setParameter("idInizioLavori", theIdInizioLavori);
+					currentSession.createQuery("delete from Intervento where idIntervento=:idIntervento");
+					theQuery.setParameter("idIntervento", inizioLavori);
 					theQuery.executeUpdate();		
-	}
-
-	@Override
-	public InizioLavoro getInizioLavoro(int theIdInizioLavori) {
-		// TODO Auto-generated method stub
-		return null;
 	} 
 
 }
